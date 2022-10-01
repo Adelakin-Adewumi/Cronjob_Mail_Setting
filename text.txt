@@ -1,0 +1,25 @@
+How to send mail using ssmtp 
+1. We will start with updating our apt 
+sudo apt update
+
+2. Install ssmtp
+sudo apt install ssmtp
+
+3. Edit ssmtp file
+sudo nano /etc/ssmtp/ssmtp.conf
+Inside this file, put the following toward the end of the file
+  root=yourEmail@gmail.com
+  mailhub=smtp.mail.gmail.com:587
+  FromLineOverride=YES
+  UseSTARTTLS=YES
+  AuthUser=yourEmail@gmail.com.au
+  AuthPass=yourGmailPassword
+  TLS_CA_File=-/cert.pem
+
+4. Edit the second ssmtp file 
+sudo nano /etc/ssmtp/revaliases
+paste this in the file 
+yourPCUsername:yourEmail@gmail.com.au:smtp.mail.gmail.com:587
+
+5. paste this on your terminal
+mail -s "mail topic" folder yourEmail@gmail.com
